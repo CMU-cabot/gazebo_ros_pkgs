@@ -388,12 +388,20 @@ void GazeboRosFactoryPrivate::SubstPackage(tinyxml2::XMLElement * element)
   for (auto attribute = element->FirstAttribute(); attribute != nullptr;
     attribute = attribute->Next())
   {
-    element->SetAttribute(attribute->Name(), ResolvePackage(attribute->Value()).c_str());
+    try {
+      element->SetAttribute(attribute->Name(), ResolvePackage(attribute->Value()).c_str());
+    } catch (std::logic_error & e) {
+      RCLCPP_ERROR(ros_node_->get_logger(), "%s", e.what());
+    }
   }
 
   const char * text = element->GetText();
   if (text) {
-    element->SetText(ResolvePackage(text).c_str());
+    try {
+      element->SetText(ResolvePackage(text).c_str());
+    } catch (std::logic_error & e) {
+      RCLCPP_ERROR(ros_node_->get_logger(), "%s", e.what());
+    }
   }
 
   // Recursively call the function for child elements
