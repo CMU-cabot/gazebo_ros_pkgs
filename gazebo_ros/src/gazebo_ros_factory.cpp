@@ -238,6 +238,8 @@ void GazeboRosFactoryPrivate::SpawnEntity(
   } else if (root->HasElement("light")) {
     entity_elem = root->GetElement("light");
     isLight = true;
+  } else if (root->HasElement("actor")) {
+    entity_elem = root->GetElement("actor");
   }
 
   if (!entity_elem) {
