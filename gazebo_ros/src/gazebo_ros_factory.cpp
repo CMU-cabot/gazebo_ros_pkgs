@@ -254,6 +254,7 @@ void GazeboRosFactoryPrivate::SpawnEntity(
 
     // When name is given and the entity exists, we assume it's an error and don't spawn
     // When name is not given, spawn anyway, and Gazebo will append a number to the name as needed
+    /*
     if ((isLight && world_->LightByName(req->name) != nullptr) ||
       world_->ModelByName(req->name) != nullptr)
     {
@@ -261,6 +262,7 @@ void GazeboRosFactoryPrivate::SpawnEntity(
       res->status_message = "Entity [" + req->name + "] already exists.";
       return;
     }
+    */
   }
 
   // Get desired initial pose
@@ -323,6 +325,7 @@ void GazeboRosFactoryPrivate::SpawnEntity(
     return;
   }
 
+  /*
   rclcpp::Time timeout = ros_node_->now() + rclcpp::Duration(10, 0);
 
   while (rclcpp::ok()) {
@@ -340,6 +343,7 @@ void GazeboRosFactoryPrivate::SpawnEntity(
     }
     usleep(2000);
   }
+  */
 
   // set result
   res->success = true;
